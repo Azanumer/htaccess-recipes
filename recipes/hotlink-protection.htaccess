@@ -1,0 +1,11 @@
+# Block image/file hotlinking: saves bandwidth, still allows search engines
+# Replace example.com with your own domain
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTP_REFERER} !^$
+    RewriteCond %{HTTP_REFERER} !^https?://(www\.)?example\.com [NC]
+    RewriteCond %{HTTP_REFERER} !google\. [NC]
+    RewriteCond %{HTTP_REFERER} !bing\. [NC]
+    RewriteCond %{HTTP_REFERER} !yahoo\. [NC]
+    RewriteRule \.(jpg|jpeg|png|gif|webp|avif|svg|mp4|pdf)$ - [F,NC,L]
+</IfModule>
